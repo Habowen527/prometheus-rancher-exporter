@@ -12,7 +12,6 @@ import (
 
 type rancherMetrics struct {
 	installedRancherVersion prometheus.GaugeVec
-	latestRancherVersion    prometheus.GaugeVec
 	managedClusterCount     prometheus.Gauge
 	managedK3sClusterCount  prometheus.Gauge
 	managedRKEClusterCount  prometheus.Gauge
@@ -60,11 +59,6 @@ func initRancherMetrics() rancherMetrics {
 		installedRancherVersion: *prometheus.NewGaugeVec(prometheus.GaugeOpts{
 			Name: "installed_rancher_version",
 			Help: "version of the installed Rancher instance",
-		}, []string{"version"},
-		),
-		latestRancherVersion: *prometheus.NewGaugeVec(prometheus.GaugeOpts{
-			Name: "latest_rancher_version",
-			Help: "version of the most recent Rancher release",
 		}, []string{"version"},
 		),
 		managedClusterCount: prometheus.NewGauge(prometheus.GaugeOpts{
@@ -154,7 +148,6 @@ func initRancherMetrics() rancherMetrics {
 	}
 
 	prometheus.MustRegister(m.installedRancherVersion)
-	prometheus.MustRegister(m.latestRancherVersion)
 	prometheus.MustRegister(m.managedClusterCount)
 	prometheus.MustRegister(m.managedRKEClusterCount)
 	prometheus.MustRegister(m.managedRKE2ClusterCount)
@@ -238,22 +231,6 @@ func Collect(client rancher.Client, Timer_GetLatestRancherVersion int, Timer_tic
 
 	// GitHub API request limits necessitate polling at a different interval
 
-	go func() {
-		ticker := time.NewTicker(time.Duration(Timer_GetLatestRancherVersion) * time.Minute)
-
-		for ; ; <-ticker.C {
-
-			baseMetrics.latestRancherVersion.Reset()
-
-			latestVers, err := client.GetLatestRancherVersion()
-
-			if err != nil {
-				log.Errorf("error retrieving latest Rancher version: %v", err)
-			}
-
-			baseMetrics.latestRancherVersion.WithLabelValues(latestVers).Set(1)
-		}
-	}()
 
 	ticker := time.NewTicker(time.Duration(Timer_ticker) * time.Second)
 
