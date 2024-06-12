@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/david-vtuk/prometheus-rancher-exporter/internal/utils"
+	"github.com/Habowen527/prometheus-rancher-exporter/internal/utils"
 	"github.com/prometheus/client_golang/prometheus"
 	"net/http"
 	"os"
@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/david-vtuk/prometheus-rancher-exporter/collector"
-	"github.com/david-vtuk/prometheus-rancher-exporter/query/rancher"
+	"github.com/Habowen527/prometheus-rancher-exporter/collector"
+	"github.com/Habowen527/prometheus-rancher-exporter/query/rancher"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
 	"k8s.io/client-go/dynamic"
