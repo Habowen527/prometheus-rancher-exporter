@@ -61,6 +61,11 @@ func initRancherMetrics() rancherMetrics {
 			Help: "version of the installed Rancher instance",
 		}, []string{"version"},
 		),
+		latestRancherVersion: *prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "latest_rancher_version",
+			Help: "version of the most recent Rancher release",
+		}, []string{"version"},
+		),
 		managedClusterCount: prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "rancher_managed_clusters",
 			Help: "number of clusters this Rancher instance is currently managing",
