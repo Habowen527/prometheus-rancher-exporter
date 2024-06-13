@@ -239,7 +239,6 @@ func Collect(client rancher.Client, Timer_GetLatestRancherVersion int, Timer_tic
 	// GitHub API request limits necessitate polling at a different interval
 	
 	go func() {
-		ticker := time.NewTicker(time.Duration(Timer_GetLatestRancherVersion) * time.Minute)
 
 
 	}()
