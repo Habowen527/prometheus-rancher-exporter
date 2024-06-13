@@ -12,6 +12,7 @@ import (
 
 type rancherMetrics struct {
 	installedRancherVersion prometheus.GaugeVec
+	latestRancherVersion    prometheus.GaugeVec
 	managedClusterCount     prometheus.Gauge
 	managedK3sClusterCount  prometheus.Gauge
 	managedRKEClusterCount  prometheus.Gauge
