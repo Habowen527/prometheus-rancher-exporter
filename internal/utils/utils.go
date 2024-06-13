@@ -2,7 +2,7 @@ package utils
 
 import (
 	"context"
-	"github.com/david-vtuk/prometheus-rancher-exporter/query/rancher"
+	"github.com/Habowen527/prometheus-rancher-exporter/query/rancher"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
