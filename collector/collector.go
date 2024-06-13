@@ -241,18 +241,7 @@ func Collect(client rancher.Client, Timer_GetLatestRancherVersion int, Timer_tic
 	go func() {
 		ticker := time.NewTicker(time.Duration(Timer_GetLatestRancherVersion) * time.Minute)
 
-		for ; ; <-ticker.C {
 
-			baseMetrics.latestRancherVersion.Reset()
-
-			latestVers, err := client.GetLatestRancherVersion()
-
-			if err != nil {
-				log.Errorf("error retrieving latest Rancher version: %v", err)
-			}
-
-			baseMetrics.latestRancherVersion.WithLabelValues(latestVers).Set(1)
-		}
 	}()
 
 	ticker := time.NewTicker(time.Duration(Timer_ticker) * time.Second)
