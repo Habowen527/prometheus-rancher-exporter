@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/david-vtuk/prometheus-rancher-exporter/query/rancher"
+	"github.com/Habowen527/prometheus-rancher-exporter/query/rancher"
 	"github.com/prometheus/client_golang/prometheus"
 	log "github.com/sirupsen/logrus"
 )
