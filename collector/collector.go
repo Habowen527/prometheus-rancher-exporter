@@ -154,6 +154,7 @@ func initRancherMetrics() rancherMetrics {
 	}
 
 	prometheus.MustRegister(m.installedRancherVersion)
+	prometheus.MustRegister(m.latestRancherVersion)
 	prometheus.MustRegister(m.managedClusterCount)
 	prometheus.MustRegister(m.managedRKEClusterCount)
 	prometheus.MustRegister(m.managedRKE2ClusterCount)
@@ -236,6 +237,7 @@ func Collect(client rancher.Client, Timer_GetLatestRancherVersion int, Timer_tic
 	baseMetrics := initRancherMetrics()
 
 	// GitHub API request limits necessitate polling at a different interval
+	
 	go func() {
 		ticker := time.NewTicker(time.Duration(Timer_GetLatestRancherVersion) * time.Minute)
 
